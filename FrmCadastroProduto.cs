@@ -14,12 +14,12 @@ namespace SistemDeCaixa
     public partial class FrmCadastroProduto : Form
     {
         int rowIndex = -1;
-        //public NpgsqlConnection conexao = new NpgsqlConnection();
-        private NpgsqlConnection conn;
+        public NpgsqlConnection conexao = new NpgsqlConnection();
         private string sql;
         private DataTable dt;
         private NpgsqlCommand cmd;
-        private string connstring = String.Format("username = postgres; password = postgres; host = localhost; Port = 5432; Database = Comandas");
+        private NpgsqlConnection conn;
+        private string connstring = String.Format("username = postgres; password = postgres; host = localhost; Port = 5432; Database = comandas");      
 
         public FrmCadastroProduto()
         {
@@ -28,10 +28,18 @@ namespace SistemDeCaixa
 
         private void FrmCadastroProduto_Load(object sender, EventArgs e)
         {
-            TxtNome.Text = TxtValor.Text = null;
-            TxtNome.Enabled = TxtValor.Enabled = false;
-            conn = new NpgsqlConnection(connstring);
-            Select();
+            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.produto'. Você pode movê-la ou removê-la conforme necessário.
+            this.produtoTableAdapter.Fill(this.comandasDataSet.produto);
+            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.produto'. Você pode movê-la ou removê-la conforme necessário.
+            this.produtoTableAdapter.Fill(this.comandasDataSet.produto);
+            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet1.produto'. Você pode movê-la ou removê-la conforme necessário.
+            this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
+            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.categoria'. Você pode movê-la ou removê-la conforme necessário.
+            this.categoriaTableAdapter.Fill(this.comandasDataSet.categoria);
+            TxtNome.Text = TxtValor.Text  = CbxCategoria.Text = null;
+            TxtNome.Enabled = TxtValor.Enabled = CbxCategoria.Enabled = false;
+            conn = new NpgsqlConnection(connstring);            
+           // Select();
 
         }
 
@@ -40,20 +48,12 @@ namespace SistemDeCaixa
             rowIndex = e.RowIndex;
             if (e.RowIndex >= 0)
             {
-                TxtNome.Text = dvgData.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
-                TxtValor.Text = dvgData.Rows[e.RowIndex].Cells["prod_preco"].Value.ToString();
+                TxtNome.Text = dvgData.Rows[e.RowIndex].Cells["prodnomeDataGridViewTextBoxColumn"].Value.ToString();
+                TxtValor.Text = dvgData.Rows[e.RowIndex].Cells["prodprecoDataGridViewTextBoxColumn"].Value.ToString();
+                //MessageBox.Show(dvgData.Rows[e.RowIndex].Cells["categoria"].Value.ToString());
+                CbxCategoria.Text = "";
+                CbxCategoria.SelectedText = dvgData.Rows[e.RowIndex].Cells["idcategoriaDataGridViewTextBoxColumn"].Value.ToString();
             }
-        }
-        private void Select()
-        {
-            conn.Open();
-            sql = @"SELECT * FROM PRODUTO";
-            cmd = new NpgsqlCommand(sql, conn);
-            dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            conn.Close();
-            dvgData.DataSource = null;
-            dvgData.DataSource = dt;
         }
         private void Delete()
         {
@@ -62,13 +62,13 @@ namespace SistemDeCaixa
                 conn.Open();
                 sql = @"SELECT * FROM PROD_DELETE(:_id)";
                 cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["id"].Value.ToString()));
+                cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["idDataGridViewTextBoxColumn"].Value.ToString()));
                 if ((int)cmd.ExecuteScalar() == 1)
                 {
                     MessageBox.Show("Removido com sucesso!");
                     rowIndex = -1;
                     conn.Close();
-                    Select();
+                   // this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
                 }
                 conn.Close();
             }
@@ -92,7 +92,7 @@ namespace SistemDeCaixa
 
         private void BTAdicionar_Click(object sender, EventArgs e)
         {
-            TxtNome.Enabled = TxtValor.Enabled = true;
+            TxtNome.Enabled = TxtValor.Enabled = CbxCategoria.Enabled = true;
             TxtNome.Text = "";
             TxtValor.Text = "";
             rowIndex = -1;
@@ -100,7 +100,7 @@ namespace SistemDeCaixa
 
         private void BTSalvar_Click(object sender, EventArgs e)
         {
-            if ((TxtNome.Text != "") && (TxtValor.Text != ""))
+            if ((TxtNome.Text != "") && (TxtValor.Text != "") && (CbxCategoria.Text != ""))
             {
                 int result = 0;
                 if (rowIndex < 0) //insert
@@ -108,7 +108,8 @@ namespace SistemDeCaixa
                     try
                     {
                         conn.Open();
-                        sql = @"SELECT * FROM PROD_INSERT( '" + TxtNome.Text + "' , " + TxtValor.Text + ")";
+                        sql = @"SELECT * FROM PROD_INSERT( '" + TxtNome.Text + "' , " + TxtValor.Text + ","+ CbxCategoria.SelectedValue +")";
+                        //cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["id_categoria"].Value.ToString()));
                         cmd = new NpgsqlCommand(sql, conn);
                         //cmd.Parameters.AddWithValue("descricao", TxtNome.Text); ;
                         //cmd.Parameters.AddWithValue("valor", TxtValor.Text);
@@ -118,7 +119,7 @@ namespace SistemDeCaixa
                         {
                             MessageBox.Show("Adicionado com sucesso!");
                             TxtNome.Enabled = TxtValor.Enabled = false;
-                            Select();
+                          //  this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
                         }
                         else
                         {
@@ -153,7 +154,7 @@ namespace SistemDeCaixa
                         {
                             MessageBox.Show("Alterado com sucesso!");
                             TxtNome.Enabled = TxtValor.Enabled = false;
-                            Select();
+                            this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
                         }
                         else
                         {
@@ -189,6 +190,12 @@ namespace SistemDeCaixa
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnAddCategoria_Click(object sender, EventArgs e)
+        {
+            FrmCadastroCategoria Novacategoria = new FrmCadastroCategoria();
+            Novacategoria.Show();
         }
     }
 }
