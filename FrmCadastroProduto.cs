@@ -19,7 +19,8 @@ namespace SistemDeCaixa
         private DataTable dt;
         private NpgsqlCommand cmd;
         private NpgsqlConnection conn;
-        private string connstring = String.Format("username = postgres; password = postgres; host = localhost; Port = 5432; Database = comandas");      
+        private string connstring = String.Format("username = postgres; password = postgres; host = localhost; Port = 5432; Database = comandas");
+        clnConexao connection = new clnConexao();
 
         public FrmCadastroProduto()
         {
@@ -30,18 +31,13 @@ namespace SistemDeCaixa
         {
             // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.produto'. Você pode movê-la ou removê-la conforme necessário.
             this.produtoTableAdapter.Fill(this.comandasDataSet.produto);
-            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.produto'. Você pode movê-la ou removê-la conforme necessário.
-            this.produtoTableAdapter.Fill(this.comandasDataSet.produto);
-            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet1.produto'. Você pode movê-la ou removê-la conforme necessário.
-            this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
-            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.categoria'. Você pode movê-la ou removê-la conforme necessário.
             this.categoriaTableAdapter.Fill(this.comandasDataSet.categoria);
             TxtNome.Text = TxtValor.Text  = CbxCategoria.Text = null;
             TxtNome.Enabled = TxtValor.Enabled = CbxCategoria.Enabled = false;
-            conn = new NpgsqlConnection(connstring);            
-           // Select();
+            conn = new NpgsqlConnection(connstring);
 
         }
+
 
         private void dvgData_CellClick(object sender, DataGridViewCellEventArgs e)
         {

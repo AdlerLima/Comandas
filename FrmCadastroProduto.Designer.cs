@@ -41,25 +41,25 @@
             this.TxtValor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CbxCategoria = new System.Windows.Forms.ComboBox();
+            this.produtoidcategoriafkeyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
             this.btnAddCategoria = new System.Windows.Forms.Button();
             this.categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.categoriaTableAdapter();
             this.produtoTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.produtoTableAdapter();
             this.dvgData = new System.Windows.Forms.DataGridView();
-            this.produtoidcategoriafkeyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.produtoidcategoriafkeyBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodnomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodprecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produtoidcategoriafkeyBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,7 +158,7 @@
             // 
             // CbxCategoria
             // 
-            this.CbxCategoria.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.produtoBindingSource, "id_categoria", true));
+            this.CbxCategoria.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.produtoidcategoriafkeyBindingSource1, "id_categoria", true));
             this.CbxCategoria.DataSource = this.categoriaBindingSource;
             this.CbxCategoria.DisplayMember = "descricao";
             this.CbxCategoria.FormattingEnabled = true;
@@ -167,6 +167,11 @@
             this.CbxCategoria.Size = new System.Drawing.Size(102, 21);
             this.CbxCategoria.TabIndex = 11;
             this.CbxCategoria.ValueMember = "id";
+            // 
+            // produtoidcategoriafkeyBindingSource
+            // 
+            this.produtoidcategoriafkeyBindingSource.DataMember = "produto_id_categoria_fkey";
+            this.produtoidcategoriafkeyBindingSource.DataSource = this.categoriaBindingSource;
             // 
             // categoriaBindingSource
             // 
@@ -218,22 +223,6 @@
             this.dvgData.TabIndex = 0;
             this.dvgData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgData_CellClick);
             // 
-            // produtoidcategoriafkeyBindingSource
-            // 
-            this.produtoidcategoriafkeyBindingSource.DataMember = "produto_id_categoria_fkey";
-            this.produtoidcategoriafkeyBindingSource.DataSource = this.categoriaBindingSource;
-            // 
-            // produtoidcategoriafkeyBindingSource1
-            // 
-            this.produtoidcategoriafkeyBindingSource1.DataMember = "produto_id_categoria_fkey";
-            this.produtoidcategoriafkeyBindingSource1.DataSource = this.categoriaBindingSource;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "descricao";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
@@ -258,10 +247,21 @@
             // 
             // idcategoriaDataGridViewTextBoxColumn
             // 
-            this.idcategoriaDataGridViewTextBoxColumn.DataPropertyName = "id_categoria";
+            this.idcategoriaDataGridViewTextBoxColumn.DataPropertyName = "descricao";
             this.idcategoriaDataGridViewTextBoxColumn.HeaderText = "Categoria";
             this.idcategoriaDataGridViewTextBoxColumn.Name = "idcategoriaDataGridViewTextBoxColumn";
             this.idcategoriaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // produtoidcategoriafkeyBindingSource1
+            // 
+            this.produtoidcategoriafkeyBindingSource1.DataMember = "produto_id_categoria_fkey";
+            this.produtoidcategoriafkeyBindingSource1.DataSource = this.categoriaBindingSource;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "descricao";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
             // 
             // FrmCadastroProduto
             // 
@@ -285,10 +285,10 @@
             this.Load += new System.EventHandler(this.FrmCadastroProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -30,7 +30,7 @@ namespace SistemDeCaixa
                     try
                     {
                         sql = @"SELECT * FROM CATEGORIA_INSERT( '" + TxtDescricao.Text + "')";
-                        conexao.insert(sql);
+                        conexao.funcoes(sql);
                         //cmd = new NpgsqlCommand(sql, conn);
                         if (result == 0)
                         {

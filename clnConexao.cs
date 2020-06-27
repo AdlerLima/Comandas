@@ -25,8 +25,9 @@ namespace SistemDeCaixa
         {
             conn.Close();
         }
-        public int insert(string sql)
+        public int funcoes(string sql)
         {
+            
             int result = 0;
             cmd = new NpgsqlCommand(sql, conn);
             result = (int)cmd.ExecuteScalar();
@@ -42,6 +43,7 @@ namespace SistemDeCaixa
             dt.Load(cmd.ExecuteReader());
             conn.Close();
         }
+
     }
     
 }

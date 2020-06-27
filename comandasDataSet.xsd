@@ -281,8 +281,8 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT id, nome, id_cargo FROM "public".funcionario</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id, nome, id_cargo FROM "public".funcionario ORDER BY id ASC</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -356,7 +356,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="produtoTableAdapter" GeneratorDataComponentClassName="produtoTableAdapter" Name="produto" UserDataComponentName="produtoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="comandasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="comandasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        produto.id, produto.prod_nome, produto.prod_preco, produto.id_categoria, categoria.descricao
@@ -374,7 +374,18 @@ FROM            produto LEFT OUTER JOIN
               <Mapping SourceColumn="id_categoria" DataSetColumn="id_categoria" />
               <Mapping SourceColumn="descricao" DataSetColumn="descricao" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="comandasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="SelectProd" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="SelectProd" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SelectProd">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        P.prod_nome, P.prod_preco, C.descricao
+FROM            produto P LEFT OUTER JOIN
+                         categoria C ON P.id_categoria = C.id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vendaTableAdapter" GeneratorDataComponentClassName="vendaTableAdapter" Name="venda" UserDataComponentName="vendaTableAdapter">
             <MainSource>
@@ -703,6 +714,25 @@ FROM            produto LEFT OUTER JOIN
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="return_value" DataSetColumn="return_value" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fun_cargoTableAdapter" GeneratorDataComponentClassName="fun_cargoTableAdapter" Name="fun_cargo" UserDataComponentName="fun_cargoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="comandasConnectionString (Settings)" DbObjectName="&quot;public&quot;.fun_cargo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, nome, id_cargo, descricao FROM "public".fun_cargo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="nome" DataSetColumn="nome" />
+              <Mapping SourceColumn="id_cargo" DataSetColumn="id_cargo" />
+              <Mapping SourceColumn="descricao" DataSetColumn="descricao" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1068,6 +1098,28 @@ FROM            produto LEFT OUTER JOIN
           <xs:complexType>
             <xs:sequence>
               <xs:element name="return_value" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnreturn_value" msprop:Generator_ColumnPropNameInRow="return_value" msprop:Generator_ColumnPropNameInTable="return_valueColumn" msprop:Generator_UserColumnName="return_value" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fun_cargo" msprop:Generator_TableClassName="fun_cargoDataTable" msprop:Generator_TableVarName="tablefun_cargo" msprop:Generator_TablePropName="fun_cargo" msprop:Generator_RowDeletingName="fun_cargoRowDeleting" msprop:Generator_RowChangingName="fun_cargoRowChanging" msprop:Generator_RowEvHandlerName="fun_cargoRowChangeEventHandler" msprop:Generator_RowDeletedName="fun_cargoRowDeleted" msprop:Generator_UserTableName="fun_cargo" msprop:Generator_RowChangedName="fun_cargoRowChanged" msprop:Generator_RowEvArgName="fun_cargoRowChangeEvent" msprop:Generator_RowClassName="fun_cargoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" minOccurs="0" />
+              <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="id_cargo" msprop:Generator_ColumnVarNameInTable="columnid_cargo" msprop:Generator_ColumnPropNameInRow="id_cargo" msprop:Generator_ColumnPropNameInTable="id_cargoColumn" msprop:Generator_UserColumnName="id_cargo" type="xs:int" minOccurs="0" />
+              <xs:element name="descricao" msprop:Generator_ColumnVarNameInTable="columndescricao" msprop:Generator_ColumnPropNameInRow="descricao" msprop:Generator_ColumnPropNameInTable="descricaoColumn" msprop:Generator_UserColumnName="descricao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
