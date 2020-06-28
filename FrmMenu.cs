@@ -39,5 +39,11 @@ namespace SistemDeCaixa
             FrmCadastroProduto produto = new FrmCadastroProduto();
             produto.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmCadastroCliente cliente = new FrmCadastroCliente();
+            cliente.Show();
+        }
     }
 }
