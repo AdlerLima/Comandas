@@ -105,10 +105,9 @@ namespace SistemDeCaixa
                     {
                         conn.Open();
                         sql = @"SELECT * FROM PROD_INSERT( '" + TxtNome.Text + "' , " + TxtValor.Text + ","+ CbxCategoria.SelectedValue +")";
-                        //cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["id_categoria"].Value.ToString()));
-                        cmd = new NpgsqlCommand(sql, conn);
-                        //cmd.Parameters.AddWithValue("descricao", TxtNome.Text); ;
-                        //cmd.Parameters.AddWithValue("valor", TxtValor.Text);
+                        
+                        cmd = new NpgsqlCommand(sql, conn);                      
+                        
                         result = (int)cmd.ExecuteScalar();
                         conn.Close();
                         if (result == 1)

@@ -45,5 +45,10 @@ namespace SistemDeCaixa
             FrmCadastroCliente cliente = new FrmCadastroCliente();
             cliente.Show();
         }
+
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

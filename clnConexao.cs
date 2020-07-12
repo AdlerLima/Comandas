@@ -43,6 +43,26 @@ namespace SistemDeCaixa
             dt.Load(cmd.ExecuteReader());
             conn.Close();
         }
+        public void selectCom(string sql)
+        {
+            conn.Open();
+            cmd = new NpgsqlCommand(sql, conn);
+            cmd.ExecuteScalar();
+        }
+        public decimal teste(string sql)
+        {
+            decimal result = 0;
+            cmd = new NpgsqlCommand(sql, conn);
+            try
+            {
+                result = (decimal)cmd.ExecuteScalar();
+            }catch(Exception ex)
+            {
+                
+            }
+            conn.Close();
+            return result;
+        }
 
     }
     

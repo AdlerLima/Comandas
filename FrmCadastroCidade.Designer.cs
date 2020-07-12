@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.CbxCidade = new System.Windows.Forms.ComboBox();
+            this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
+            this.cidadeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label = new System.Windows.Forms.Label();
             this.TxtCidade = new System.Windows.Forms.TextBox();
             this.BTRemover = new System.Windows.Forms.Button();
@@ -37,8 +39,6 @@
             this.npgsqlCommand1 = new Npgsql.NpgsqlCommand();
             this.CbxUF = new System.Windows.Forms.ComboBox();
             this.UF = new System.Windows.Forms.Label();
-            this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
-            this.cidadeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cidadeTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.cidadeTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cidadeBindingSource)).BeginInit();
@@ -56,6 +56,16 @@
             this.CbxCidade.TabIndex = 9;
             this.CbxCidade.ValueMember = "id";
             this.CbxCidade.SelectedIndexChanged += new System.EventHandler(this.CbxCidade_SelectedIndexChanged);
+            // 
+            // comandasDataSet
+            // 
+            this.comandasDataSet.DataSetName = "comandasDataSet";
+            this.comandasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cidadeBindingSource
+            // 
+            this.cidadeBindingSource.DataMember = "cidade";
+            this.cidadeBindingSource.DataSource = this.comandasDataSet;
             // 
             // label
             // 
@@ -81,6 +91,7 @@
             this.BTRemover.TabIndex = 6;
             this.BTRemover.Text = "Remover";
             this.BTRemover.UseVisualStyleBackColor = true;
+            this.BTRemover.Click += new System.EventHandler(this.BTRemover_Click);
             // 
             // BTSalvar
             // 
@@ -90,6 +101,7 @@
             this.BTSalvar.TabIndex = 5;
             this.BTSalvar.Text = "Salvar";
             this.BTSalvar.UseVisualStyleBackColor = true;
+            this.BTSalvar.Click += new System.EventHandler(this.BTSalvar_Click);
             // 
             // npgsqlCommand1
             // 
@@ -115,16 +127,6 @@
             this.UF.Size = new System.Drawing.Size(21, 13);
             this.UF.TabIndex = 11;
             this.UF.Text = "UF";
-            // 
-            // comandasDataSet
-            // 
-            this.comandasDataSet.DataSetName = "comandasDataSet";
-            this.comandasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cidadeBindingSource
-            // 
-            this.cidadeBindingSource.DataMember = "cidade";
-            this.cidadeBindingSource.DataSource = this.comandasDataSet;
             // 
             // cidadeTableAdapter
             // 

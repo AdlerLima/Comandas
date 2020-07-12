@@ -20,10 +20,39 @@ namespace SistemDeCaixa
         private void BTEntrar_Click(object sender, EventArgs e)
         {
             FrmLogin login = new FrmLogin();
+            if (TxtUsuario.Text.ToUpper() == "ADMIN")
+            {
+                if (TxtSenha.Text == "admin")
+                {
+                    FrmMenu menu = new FrmMenu();
+                    menu.Show();
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Usuario ou Senha incorretos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Usuario ou Senha incorretos");
+            }
+                       
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            TxtSenha.PasswordChar = '*';
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmLogin login = new FrmLogin();
+            login.Dispose();
             login.Close();
-            FrmMenu menu = new FrmMenu();
-            menu.Show();
-            
+            login.Hide();
+            login.Visible = false;
         }
     }
 }

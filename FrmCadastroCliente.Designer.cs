@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.CbxCidade = new System.Windows.Forms.ComboBox();
+            this.cidadeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
             this.TxtNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.mskDataNascimento = new System.Windows.Forms.MaskedTextBox();
@@ -48,27 +50,29 @@
             this.BTSalvar = new System.Windows.Forms.Button();
             this.BTRemover = new System.Windows.Forms.Button();
             this.dtvClientes = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bairro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeCidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clicidBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BTPesquisar = new System.Windows.Forms.Button();
             this.BTNovoCidade = new System.Windows.Forms.Button();
-            this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clienteTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.clienteTableAdapter();
-            this.clicidBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cli_cidTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.cli_cidTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idcidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpfDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nascimentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ruaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bairroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ufDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dtvClientes)).BeginInit();
+            this.cidadeTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.cidadeTableAdapter();
+            this.TxtCidade = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.cidadeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtvClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clicidBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -82,11 +86,25 @@
             // 
             // CbxCidade
             // 
+            this.CbxCidade.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cidadeBindingSource, "id", true));
+            this.CbxCidade.DataSource = this.cidadeBindingSource;
+            this.CbxCidade.DisplayMember = "nome";
             this.CbxCidade.FormattingEnabled = true;
             this.CbxCidade.Location = new System.Drawing.Point(322, 97);
             this.CbxCidade.Name = "CbxCidade";
             this.CbxCidade.Size = new System.Drawing.Size(105, 21);
             this.CbxCidade.TabIndex = 1;
+            this.CbxCidade.ValueMember = "id";
+            // 
+            // cidadeBindingSource
+            // 
+            this.cidadeBindingSource.DataMember = "cidade";
+            this.cidadeBindingSource.DataSource = this.comandasDataSet;
+            // 
+            // comandasDataSet
+            // 
+            this.comandasDataSet.DataSetName = "comandasDataSet";
+            this.comandasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // TxtNome
             // 
@@ -216,6 +234,7 @@
             this.BTSalvar.TabIndex = 16;
             this.BTSalvar.Text = "Salvar";
             this.BTSalvar.UseVisualStyleBackColor = true;
+            this.BTSalvar.Click += new System.EventHandler(this.BTSalvar_Click);
             // 
             // BTRemover
             // 
@@ -225,6 +244,7 @@
             this.BTRemover.TabIndex = 17;
             this.BTRemover.Text = "Remover";
             this.BTRemover.UseVisualStyleBackColor = true;
+            this.BTRemover.Click += new System.EventHandler(this.BTRemover_Click);
             // 
             // dtvClientes
             // 
@@ -234,16 +254,16 @@
             this.dtvClientes.AutoGenerateColumns = false;
             this.dtvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nomeDataGridViewTextBoxColumn,
-            this.idcidadeDataGridViewTextBoxColumn,
-            this.cpfDataGridViewTextBoxColumn,
-            this.nascimentoDataGridViewTextBoxColumn,
-            this.ruaDataGridViewTextBoxColumn,
-            this.numeroDataGridViewTextBoxColumn,
-            this.bairroDataGridViewTextBoxColumn,
-            this.cidadeDataGridViewTextBoxColumn,
-            this.ufDataGridViewTextBoxColumn});
+            this.id,
+            this.nome,
+            this.cidade,
+            this.cpf,
+            this.nascimento,
+            this.rua,
+            this.numero,
+            this.bairro,
+            this.NomeCidade,
+            this.uf});
             this.dtvClientes.DataSource = this.clicidBindingSource;
             this.dtvClientes.Location = new System.Drawing.Point(12, 198);
             this.dtvClientes.MultiSelect = false;
@@ -252,6 +272,91 @@
             this.dtvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtvClientes.Size = new System.Drawing.Size(440, 196);
             this.dtvClientes.TabIndex = 18;
+            this.dtvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtvClientes_CellClick);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Codigo";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // nome
+            // 
+            this.nome.DataPropertyName = "nome";
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            this.nome.Width = 180;
+            // 
+            // cidade
+            // 
+            this.cidade.DataPropertyName = "id_cidade";
+            this.cidade.HeaderText = "id_cidade";
+            this.cidade.Name = "cidade";
+            this.cidade.ReadOnly = true;
+            this.cidade.Visible = false;
+            // 
+            // cpf
+            // 
+            this.cpf.DataPropertyName = "cpf";
+            this.cpf.HeaderText = "cpf";
+            this.cpf.Name = "cpf";
+            this.cpf.ReadOnly = true;
+            this.cpf.Visible = false;
+            // 
+            // nascimento
+            // 
+            this.nascimento.DataPropertyName = "nascimento";
+            this.nascimento.HeaderText = "nascimento";
+            this.nascimento.Name = "nascimento";
+            this.nascimento.ReadOnly = true;
+            this.nascimento.Visible = false;
+            // 
+            // rua
+            // 
+            this.rua.DataPropertyName = "rua";
+            this.rua.HeaderText = "rua";
+            this.rua.Name = "rua";
+            this.rua.ReadOnly = true;
+            this.rua.Visible = false;
+            // 
+            // numero
+            // 
+            this.numero.DataPropertyName = "numero";
+            this.numero.HeaderText = "numero";
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Visible = false;
+            // 
+            // bairro
+            // 
+            this.bairro.DataPropertyName = "bairro";
+            this.bairro.HeaderText = "bairro";
+            this.bairro.Name = "bairro";
+            this.bairro.ReadOnly = true;
+            this.bairro.Visible = false;
+            // 
+            // NomeCidade
+            // 
+            this.NomeCidade.DataPropertyName = "cidade";
+            this.NomeCidade.HeaderText = "Cidade";
+            this.NomeCidade.Name = "NomeCidade";
+            this.NomeCidade.ReadOnly = true;
+            this.NomeCidade.Width = 130;
+            // 
+            // uf
+            // 
+            this.uf.DataPropertyName = "uf";
+            this.uf.HeaderText = "uf";
+            this.uf.Name = "uf";
+            this.uf.ReadOnly = true;
+            this.uf.Visible = false;
+            // 
+            // clicidBindingSource
+            // 
+            this.clicidBindingSource.DataMember = "cli_cid";
+            this.clicidBindingSource.DataSource = this.comandasDataSet;
             // 
             // BTPesquisar
             // 
@@ -272,11 +377,6 @@
             this.BTNovoCidade.UseVisualStyleBackColor = true;
             this.BTNovoCidade.Click += new System.EventHandler(this.BTNovoCidade_Click);
             // 
-            // comandasDataSet
-            // 
-            this.comandasDataSet.DataSetName = "comandasDataSet";
-            this.comandasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataMember = "cliente";
@@ -286,89 +386,27 @@
             // 
             this.clienteTableAdapter.ClearBeforeFill = true;
             // 
-            // clicidBindingSource
-            // 
-            this.clicidBindingSource.DataMember = "cli_cid";
-            this.clicidBindingSource.DataSource = this.comandasDataSet;
-            // 
             // cli_cidTableAdapter
             // 
             this.cli_cidTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // cidadeTableAdapter
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Codigo";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.cidadeTableAdapter.ClearBeforeFill = true;
             // 
-            // nomeDataGridViewTextBoxColumn
+            // TxtCidade
             // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // idcidadeDataGridViewTextBoxColumn
-            // 
-            this.idcidadeDataGridViewTextBoxColumn.DataPropertyName = "id_cidade";
-            this.idcidadeDataGridViewTextBoxColumn.HeaderText = "id_cidade";
-            this.idcidadeDataGridViewTextBoxColumn.Name = "idcidadeDataGridViewTextBoxColumn";
-            this.idcidadeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cpfDataGridViewTextBoxColumn
-            // 
-            this.cpfDataGridViewTextBoxColumn.DataPropertyName = "cpf";
-            this.cpfDataGridViewTextBoxColumn.HeaderText = "cpf";
-            this.cpfDataGridViewTextBoxColumn.Name = "cpfDataGridViewTextBoxColumn";
-            this.cpfDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nascimentoDataGridViewTextBoxColumn
-            // 
-            this.nascimentoDataGridViewTextBoxColumn.DataPropertyName = "nascimento";
-            this.nascimentoDataGridViewTextBoxColumn.HeaderText = "nascimento";
-            this.nascimentoDataGridViewTextBoxColumn.Name = "nascimentoDataGridViewTextBoxColumn";
-            this.nascimentoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // ruaDataGridViewTextBoxColumn
-            // 
-            this.ruaDataGridViewTextBoxColumn.DataPropertyName = "rua";
-            this.ruaDataGridViewTextBoxColumn.HeaderText = "rua";
-            this.ruaDataGridViewTextBoxColumn.Name = "ruaDataGridViewTextBoxColumn";
-            this.ruaDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // numeroDataGridViewTextBoxColumn
-            // 
-            this.numeroDataGridViewTextBoxColumn.DataPropertyName = "numero";
-            this.numeroDataGridViewTextBoxColumn.HeaderText = "numero";
-            this.numeroDataGridViewTextBoxColumn.Name = "numeroDataGridViewTextBoxColumn";
-            this.numeroDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bairroDataGridViewTextBoxColumn
-            // 
-            this.bairroDataGridViewTextBoxColumn.DataPropertyName = "bairro";
-            this.bairroDataGridViewTextBoxColumn.HeaderText = "bairro";
-            this.bairroDataGridViewTextBoxColumn.Name = "bairroDataGridViewTextBoxColumn";
-            this.bairroDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cidadeDataGridViewTextBoxColumn
-            // 
-            this.cidadeDataGridViewTextBoxColumn.DataPropertyName = "cidade";
-            this.cidadeDataGridViewTextBoxColumn.HeaderText = "Cidade";
-            this.cidadeDataGridViewTextBoxColumn.Name = "cidadeDataGridViewTextBoxColumn";
-            this.cidadeDataGridViewTextBoxColumn.Width = 130;
-            // 
-            // ufDataGridViewTextBoxColumn
-            // 
-            this.ufDataGridViewTextBoxColumn.DataPropertyName = "uf";
-            this.ufDataGridViewTextBoxColumn.HeaderText = "uf";
-            this.ufDataGridViewTextBoxColumn.Name = "ufDataGridViewTextBoxColumn";
-            this.ufDataGridViewTextBoxColumn.Visible = false;
+            this.TxtCidade.Location = new System.Drawing.Point(413, 172);
+            this.TxtCidade.Name = "TxtCidade";
+            this.TxtCidade.Size = new System.Drawing.Size(39, 20);
+            this.TxtCidade.TabIndex = 21;
             // 
             // FrmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 406);
+            this.Controls.Add(this.TxtCidade);
             this.Controls.Add(this.BTNovoCidade);
             this.Controls.Add(this.BTPesquisar);
             this.Controls.Add(this.dtvClientes);
@@ -393,10 +431,11 @@
             this.Name = "FrmCadastroCliente";
             this.Text = "FrmCadastroCliente";
             this.Load += new System.EventHandler(this.FrmCadastroCliente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cidadeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtvClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clicidBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,15 +469,18 @@
         private System.Windows.Forms.Button BTNovoCidade;
         private System.Windows.Forms.BindingSource clicidBindingSource;
         private comandasDataSetTableAdapters.cli_cidTableAdapter cli_cidTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcidadeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpfDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nascimentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ruaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numeroDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bairroDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cidadeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ufDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource cidadeBindingSource;
+        private comandasDataSetTableAdapters.cidadeTableAdapter cidadeTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nascimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rua;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bairro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uf;
+        private System.Windows.Forms.TextBox TxtCidade;
     }
 }
