@@ -14,6 +14,7 @@ namespace SistemDeCaixa
     {
         string sql = "";
         clnConexao conexao = new clnConexao();
+        private DataTable dt;
         public FrmVenda()
         {
             InitializeComponent();
@@ -48,6 +49,8 @@ namespace SistemDeCaixa
             this.clienteTableAdapter.Fill(this.comandasDataSet.cliente);
         }
 
+
+
         private void BTFinalizar_Click(object sender, EventArgs e)
         {
             
@@ -59,23 +62,69 @@ namespace SistemDeCaixa
             int comanda = Convert.ToInt32(TxtComanda.Text);
             int cliente = Convert.ToInt32(CbxCliente.SelectedValue);
             int funcionario = Convert.ToInt32(CbxFuncionario.SelectedValue);
-            
-
-            sql = @"SELECT * FROM VENDA_INSERT(" + valor + "," + pagamento + "," + comanda + "," + cliente + "," + funcionario + ")";
             conexao.connection();
-            if(conexao.funcoes(sql) == 1)
-            {                
-                sql = @"SELECT * FROM STATUS_UPDATE(" + comanda + ",'" + 'F' + "')";
-                conexao.connection();
-                if (conexao.funcoes(sql) == 1)
+            conexao.selectfinalizar(cliente);
+            if (!string.IsNullOrEmpty(this.comandasDataSet.cliente.Rows[0]["CPF"].ToString()))
+            {
+
+                this.clienteTableAdapter.SelectCliente(this.comandasDataSet.cliente, cliente);
+                var cpf = this.comandasDataSet.cliente.Rows[0]["CPF"].ToString();
+                var rua = this.comandasDataSet.cliente.Rows[0]["RUA"].ToString();
+                var bairro = this.comandasDataSet.cliente.Rows[0]["BAIRRO"].ToString();
+                if (CbxPagamento.SelectedIndex == 3)
                 {
-                    MessageBox.Show("Venda Finalizada com Sucesso!");
+                    if (cpf == "")
+                    {
+                        MessageBox.Show("Cadastro do cliente deve estar completo para gerar um boleto.");
+                    }
+                    else if (rua == "")
+                    {
+                        MessageBox.Show("Cadastro do cliente deve estar completo para gerar um boleto.");
+                    }
+                    else if (bairro == "")
+                    {
+                        MessageBox.Show("Cadastro do cliente deve estar completo para gerar um boleto.");
+                    }
+                    else
+                    {
+                        sql = @"SELECT * FROM VENDA_INSERT(" + valor + "," + pagamento + "," + comanda + "," + cliente + "," + funcionario + ")";
+                        conexao.connection();
+                        if (conexao.funcoes(sql) == 1)
+                        {
+                            sql = @"SELECT * FROM STATUS_UPDATE(" + comanda + ",'" + 'F' + "')";
+                            conexao.connection();
+                            if (conexao.funcoes(sql) == 1)
+                            {
+                                MessageBox.Show("Venda Finalizada com Sucesso!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Falha ao registrar a venda");
+                        }
+                    }
+                }
+                else
+                {
+                    sql = @"SELECT * FROM VENDA_INSERT(" + valor + "," + pagamento + "," + comanda + "," + cliente + "," + funcionario + ")";
+                    conexao.connection();
+                    if (conexao.funcoes(sql) == 1)
+                    {
+                        sql = @"SELECT * FROM STATUS_UPDATE(" + comanda + ",'" + 'F' + "')";
+                        conexao.connection();
+                        if (conexao.funcoes(sql) == 1)
+                        {
+                            MessageBox.Show("Venda Finalizada com Sucesso!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao registrar a venda");
+                    }
                 }
             }
-            else
-            {
-                MessageBox.Show("Falha ao registrar a venda");
-            }
+
+
         }
     }
 }

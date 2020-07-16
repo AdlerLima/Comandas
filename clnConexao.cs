@@ -65,6 +65,15 @@ namespace SistemDeCaixa
             conn.Close();
             return result;
         }
+        public void selectfinalizar(int codCliente)
+        {
+            
+            sql = @"SELECT CPF FROM CLIENTE";
+            cmd = new NpgsqlCommand(sql, conn);
+            dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            conn.Close();
+        }
 
     }
     

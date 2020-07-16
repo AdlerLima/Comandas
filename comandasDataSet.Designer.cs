@@ -2131,6 +2131,16 @@ namespace SistemDeCaixa {
             
             private global::System.Data.DataColumn columnid_cidade;
             
+            private global::System.Data.DataColumn columncpf;
+            
+            private global::System.Data.DataColumn columnnascimento;
+            
+            private global::System.Data.DataColumn columnrua;
+            
+            private global::System.Data.DataColumn columnnumero;
+            
+            private global::System.Data.DataColumn columnbairro;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public clienteDataTable() {
@@ -2190,6 +2200,46 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn cpfColumn {
+                get {
+                    return this.columncpf;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn nascimentoColumn {
+                get {
+                    return this.columnnascimento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ruaColumn {
+                get {
+                    return this.columnrua;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn numeroColumn {
+                get {
+                    return this.columnnumero;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn bairroColumn {
+                get {
+                    return this.columnbairro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2225,12 +2275,17 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public clienteRow AddclienteRow(int id, string nome, cidadeRow parentcidadeRowBycliente_id_cidade_fkey) {
+            public clienteRow AddclienteRow(int id, string nome, cidadeRow parentcidadeRowBycliente_id_cidade_fkey, string cpf, System.DateTime nascimento, string rua, int numero, string bairro) {
                 clienteRow rowclienteRow = ((clienteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
                         nome,
-                        null};
+                        null,
+                        cpf,
+                        nascimento,
+                        rua,
+                        numero,
+                        bairro};
                 if ((parentcidadeRowBycliente_id_cidade_fkey != null)) {
                     columnValuesArray[2] = parentcidadeRowBycliente_id_cidade_fkey[0];
                 }
@@ -2266,6 +2321,11 @@ namespace SistemDeCaixa {
                 this.columnid = base.Columns["id"];
                 this.columnnome = base.Columns["nome"];
                 this.columnid_cidade = base.Columns["id_cidade"];
+                this.columncpf = base.Columns["cpf"];
+                this.columnnascimento = base.Columns["nascimento"];
+                this.columnrua = base.Columns["rua"];
+                this.columnnumero = base.Columns["numero"];
+                this.columnbairro = base.Columns["bairro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2277,6 +2337,16 @@ namespace SistemDeCaixa {
                 base.Columns.Add(this.columnnome);
                 this.columnid_cidade = new global::System.Data.DataColumn("id_cidade", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_cidade);
+                this.columncpf = new global::System.Data.DataColumn("cpf", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncpf);
+                this.columnnascimento = new global::System.Data.DataColumn("nascimento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnascimento);
+                this.columnrua = new global::System.Data.DataColumn("rua", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrua);
+                this.columnnumero = new global::System.Data.DataColumn("numero", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumero);
+                this.columnbairro = new global::System.Data.DataColumn("bairro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbairro);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -2284,6 +2354,9 @@ namespace SistemDeCaixa {
                 this.columnnome.AllowDBNull = false;
                 this.columnnome.MaxLength = 100;
                 this.columnid_cidade.AllowDBNull = false;
+                this.columncpf.MaxLength = 14;
+                this.columnrua.MaxLength = 100;
+                this.columnbairro.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9233,6 +9306,86 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string cpf {
+                get {
+                    try {
+                        return ((string)(this[this.tablecliente.cpfColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'cpf\' na tabela \'cliente\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecliente.cpfColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime nascimento {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablecliente.nascimentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'nascimento\' na tabela \'cliente\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecliente.nascimentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string rua {
+                get {
+                    try {
+                        return ((string)(this[this.tablecliente.ruaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'rua\' na tabela \'cliente\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecliente.ruaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int numero {
+                get {
+                    try {
+                        return ((int)(this[this.tablecliente.numeroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'numero\' na tabela \'cliente\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecliente.numeroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string bairro {
+                get {
+                    try {
+                        return ((string)(this[this.tablecliente.bairroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'bairro\' na tabela \'cliente\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecliente.bairroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public cidadeRow cidadeRow {
                 get {
                     return ((cidadeRow)(this.GetParentRow(this.Table.ParentRelations["cliente_id_cidade_fkey"])));
@@ -9240,6 +9393,66 @@ namespace SistemDeCaixa {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["cliente_id_cidade_fkey"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IscpfNull() {
+                return this.IsNull(this.tablecliente.cpfColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetcpfNull() {
+                this[this.tablecliente.cpfColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsnascimentoNull() {
+                return this.IsNull(this.tablecliente.nascimentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetnascimentoNull() {
+                this[this.tablecliente.nascimentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsruaNull() {
+                return this.IsNull(this.tablecliente.ruaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetruaNull() {
+                this[this.tablecliente.ruaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsnumeroNull() {
+                return this.IsNull(this.tablecliente.numeroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetnumeroNull() {
+                this[this.tablecliente.numeroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsbairroNull() {
+                return this.IsNull(this.tablecliente.bairroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetbairroNull() {
+                this[this.tablecliente.bairroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13416,11 +13629,15 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("nome", "nome");
             tableMapping.ColumnMappings.Add("id_cidade", "id_cidade");
+            tableMapping.ColumnMappings.Add("cpf", "cpf");
+            tableMapping.ColumnMappings.Add("nascimento", "nascimento");
+            tableMapping.ColumnMappings.Add("rua", "rua");
+            tableMapping.ColumnMappings.Add("numero", "numero");
+            tableMapping.ColumnMappings.Add("bairro", "bairro");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"public\".\"cliente\" WHERE ((\"id\" = :Original_id) AND (\"nome\" = :Origin" +
-                "al_nome) AND (\"id_cidade\" = :Original_id_cidade))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""public"".""cliente"" WHERE ((""id"" = :Original_id) AND (""nome"" = :Original_nome) AND (""id_cidade"" = :Original_id_cidade) AND ((:IsNull_bairro = 1 AND ""bairro"" IS NULL) OR (""bairro"" = :Original_bairro)) AND ((:IsNull_cpf = 1 AND ""cpf"" IS NULL) OR (""cpf"" = :Original_cpf)) AND ((:IsNull_nascimento = 1 AND ""nascimento"" IS NULL) OR (""nascimento"" = :Original_nascimento)) AND ((:IsNull_numero = 1 AND ""numero"" IS NULL) OR (""numero"" = :Original_numero)) AND ((:IsNull_rua = 1 AND ""rua"" IS NULL) OR (""rua"" = :Original_rua)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.PostgreSql.PgSqlParameter param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "Original_id";
@@ -13445,10 +13662,93 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             param.SourceColumn = "id_cidade";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_bairro";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_bairro";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_cpf";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_cpf";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_nascimento";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_nascimento";
+            param.DbType = global::System.Data.DbType.Date;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_rua";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_rua";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"public\".\"cliente\" (\"id\", \"nome\", \"id_cidade\") VALUES (:id, :nome, :i" +
-                "d_cidade)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"public\".\"cliente\" (\"id\", \"nome\", \"id_cidade\", \"bairro\", \"cpf\", \"nasc" +
+                "imento\", \"numero\", \"rua\") VALUES (:id, :nome, :id_cidade, :bairro, :cpf, :nascim" +
+                "ento, :numero, :rua)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "id";
@@ -13470,11 +13770,41 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "id_cidade";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "bairro";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "cpf";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "nascimento";
+            param.DbType = global::System.Data.DbType.Date;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "rua";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"public\".\"cliente\" SET \"id\" = :id, \"nome\" = :nome, \"id_cidade\" = :id_cidad" +
-                "e WHERE ((\"id\" = :Original_id) AND (\"nome\" = :Original_nome) AND (\"id_cidade\" = " +
-                ":Original_id_cidade))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""public"".""cliente"" SET ""id"" = :id, ""nome"" = :nome, ""id_cidade"" = :id_cidade, ""bairro"" = :bairro, ""cpf"" = :cpf, ""nascimento"" = :nascimento, ""numero"" = :numero, ""rua"" = :rua WHERE ((""id"" = :Original_id) AND (""nome"" = :Original_nome) AND (""id_cidade"" = :Original_id_cidade) AND ((:IsNull_bairro = 1 AND ""bairro"" IS NULL) OR (""bairro"" = :Original_bairro)) AND ((:IsNull_cpf = 1 AND ""cpf"" IS NULL) OR (""cpf"" = :Original_cpf)) AND ((:IsNull_nascimento = 1 AND ""nascimento"" IS NULL) OR (""nascimento"" = :Original_nascimento)) AND ((:IsNull_numero = 1 AND ""numero"" IS NULL) OR (""numero"" = :Original_numero)) AND ((:IsNull_rua = 1 AND ""rua"" IS NULL) OR (""rua"" = :Original_rua)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "id";
@@ -13495,6 +13825,38 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
             param.IsNullable = true;
             param.SourceColumn = "id_cidade";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "bairro";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "cpf";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "nascimento";
+            param.DbType = global::System.Data.DbType.Date;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "rua";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "Original_id";
@@ -13519,6 +13881,88 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             param.SourceColumn = "id_cidade";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_bairro";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_bairro";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "bairro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_cpf";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_cpf";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "cpf";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_nascimento";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_nascimento";
+            param.DbType = global::System.Data.DbType.Date;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "nascimento";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_numero";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "numero";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_rua";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_rua";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "rua";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13531,11 +13975,24 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[1];
+            this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[2];
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, nome, id_cidade FROM \"public\".cliente";
+            this._commandCollection[0].CommandText = "SELECT id, nome, id_cidade, bairro, cpf, nascimento, numero, rua FROM cliente";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Devart.Data.PostgreSql.PgSqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT id, nome, id_cidade, bairro, cpf, nascimento, numero, rua FROM cliente whe" +
+                "re id = ?";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Devart.Data.PostgreSql.PgSqlParameter param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "PARAM1";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.Size = 2147483647;
+            param.IsNullable = true;
+            param.SourceColumn = "id";
+            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13560,6 +14017,20 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             comandasDataSet.clienteDataTable dataTable = new comandasDataSet.clienteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int SelectCliente(comandasDataSet.clienteDataTable dataTable, int PARAM1) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PARAM1));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13595,7 +14066,7 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_nome, int Original_id_cidade) {
+        public virtual int Delete(int Original_id, string Original_nome, int Original_id_cidade, string Original_bairro, string Original_cpf, System.DateTime Original_nascimento, int Original_numero, string Original_rua) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_nome == null)) {
                 throw new global::System.ArgumentNullException("Original_nome");
@@ -13604,6 +14075,31 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_nome));
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_id_cidade));
+            if ((Original_bairro == null)) {
+                throw new global::System.ArgumentNullException("Original_bairro");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_bairro));
+            }
+            if ((Original_cpf == null)) {
+                throw new global::System.ArgumentNullException("Original_cpf");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_cpf));
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_nascimento));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_numero));
+            if ((Original_rua == null)) {
+                throw new global::System.ArgumentNullException("Original_rua");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_rua));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13624,7 +14120,7 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int id, string nome, int id_cidade) {
+        public virtual int Insert(int id, string nome, int id_cidade, string bairro, string cpf, System.DateTime nascimento, int numero, string rua) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id));
             if ((nome == null)) {
                 throw new global::System.ArgumentNullException("nome");
@@ -13633,6 +14129,26 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(nome));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(id_cidade));
+            if ((bairro == null)) {
+                throw new global::System.ArgumentNullException("bairro");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(bairro));
+            }
+            if ((cpf == null)) {
+                throw new global::System.ArgumentNullException("cpf");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(cpf));
+            }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(nascimento));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(numero));
+            if ((rua == null)) {
+                throw new global::System.ArgumentNullException("rua");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(rua));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13653,7 +14169,23 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int id, string nome, int id_cidade, int Original_id, string Original_nome, int Original_id_cidade) {
+        public virtual int Update(
+                    int id, 
+                    string nome, 
+                    int id_cidade, 
+                    string bairro, 
+                    string cpf, 
+                    System.DateTime nascimento, 
+                    int numero, 
+                    string rua, 
+                    int Original_id, 
+                    string Original_nome, 
+                    int Original_id_cidade, 
+                    string Original_bairro, 
+                    string Original_cpf, 
+                    System.DateTime Original_nascimento, 
+                    int Original_numero, 
+                    string Original_rua) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(id));
             if ((nome == null)) {
                 throw new global::System.ArgumentNullException("nome");
@@ -13662,14 +14194,59 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(nome));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(id_cidade));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_id));
+            if ((bairro == null)) {
+                throw new global::System.ArgumentNullException("bairro");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(bairro));
+            }
+            if ((cpf == null)) {
+                throw new global::System.ArgumentNullException("cpf");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(cpf));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(nascimento));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(numero));
+            if ((rua == null)) {
+                throw new global::System.ArgumentNullException("rua");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(rua));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_id));
             if ((Original_nome == null)) {
                 throw new global::System.ArgumentNullException("Original_nome");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_nome));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_nome));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_id_cidade));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_id_cidade));
+            if ((Original_bairro == null)) {
+                throw new global::System.ArgumentNullException("Original_bairro");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_bairro));
+            }
+            if ((Original_cpf == null)) {
+                throw new global::System.ArgumentNullException("Original_cpf");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_cpf));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_nascimento));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_numero));
+            if ((Original_rua == null)) {
+                throw new global::System.ArgumentNullException("Original_rua");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_rua));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13690,8 +14267,8 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string nome, int id_cidade, int Original_id, string Original_nome, int Original_id_cidade) {
-            return this.Update(Original_id, nome, id_cidade, Original_id, Original_nome, Original_id_cidade);
+        public virtual int Update(string nome, int id_cidade, string bairro, string cpf, System.DateTime nascimento, int numero, string rua, int Original_id, string Original_nome, int Original_id_cidade, string Original_bairro, string Original_cpf, System.DateTime Original_nascimento, int Original_numero, string Original_rua) {
+            return this.Update(Original_id, nome, id_cidade, bairro, cpf, nascimento, numero, rua, Original_id, Original_nome, Original_id_cidade, Original_bairro, Original_cpf, Original_nascimento, Original_numero, Original_rua);
         }
     }
     
