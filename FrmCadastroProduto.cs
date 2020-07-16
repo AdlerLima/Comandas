@@ -29,6 +29,8 @@ namespace SistemDeCaixa
 
         private void FrmCadastroProduto_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'comandasDataSet1.v_produto_categoria'. Você pode movê-la ou removê-la conforme necessário.
+            this.v_produto_categoriaTableAdapter.Fill(this.comandasDataSet1.v_produto_categoria);
             // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.produto'. Você pode movê-la ou removê-la conforme necessário.
             this.produtoTableAdapter.Fill(this.comandasDataSet.produto);
             this.categoriaTableAdapter.Fill(this.comandasDataSet.categoria);
@@ -44,11 +46,11 @@ namespace SistemDeCaixa
             rowIndex = e.RowIndex;
             if (e.RowIndex >= 0)
             {
-                TxtNome.Text = dvgData.Rows[e.RowIndex].Cells["prodnomeDataGridViewTextBoxColumn"].Value.ToString();
-                TxtValor.Text = dvgData.Rows[e.RowIndex].Cells["prodprecoDataGridViewTextBoxColumn"].Value.ToString();
+                TxtNome.Text = dvgData.Rows[e.RowIndex].Cells["produto"].Value.ToString();
+                TxtValor.Text = dvgData.Rows[e.RowIndex].Cells["preco"].Value.ToString();
                 //MessageBox.Show(dvgData.Rows[e.RowIndex].Cells["categoria"].Value.ToString());
                 CbxCategoria.Text = "";
-                CbxCategoria.SelectedText = dvgData.Rows[e.RowIndex].Cells["idcategoriaDataGridViewTextBoxColumn"].Value.ToString();
+                CbxCategoria.SelectedText = dvgData.Rows[e.RowIndex].Cells["descricao"].Value.ToString();
             }
         }
         private void Delete()
@@ -58,13 +60,14 @@ namespace SistemDeCaixa
                 conn.Open();
                 sql = @"SELECT * FROM PROD_DELETE(:_id)";
                 cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["idDataGridViewTextBoxColumn"].Value.ToString()));
+                cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["id_produto"].Value.ToString()));
                 if ((int)cmd.ExecuteScalar() == 1)
                 {
                     MessageBox.Show("Removido com sucesso!");
                     rowIndex = -1;
                     conn.Close();
-                   // this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
+                    this.v_produto_categoriaTableAdapter.Fill(this.comandasDataSet1.v_produto_categoria);
+                    
                 }
                 conn.Close();
             }
@@ -98,23 +101,17 @@ namespace SistemDeCaixa
         {
             if ((TxtNome.Text != "") && (TxtValor.Text != "") && (CbxCategoria.Text != ""))
             {
-                int result = 0;
                 if (rowIndex < 0) //insert
                 {
                     try
                     {
-                        conn.Open();
+                        connection.connection();
                         sql = @"SELECT * FROM PROD_INSERT( '" + TxtNome.Text + "' , " + TxtValor.Text + ","+ CbxCategoria.SelectedValue +")";
-                        
-                        cmd = new NpgsqlCommand(sql, conn);                      
-                        
-                        result = (int)cmd.ExecuteScalar();
-                        conn.Close();
-                        if (result == 1)
+                        if ((connection.funcoes(sql))== 1)
                         {
                             MessageBox.Show("Adicionado com sucesso!");
                             TxtNome.Enabled = TxtValor.Enabled = false;
-                          //  this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
+                            this.v_produto_categoriaTableAdapter.Fill(this.comandasDataSet1.v_produto_categoria);
                         }
                         else
                         {
@@ -133,23 +130,22 @@ namespace SistemDeCaixa
                     try
                     {
                         conn.Open();
-                        int codigo = int.Parse(dvgData.Rows[rowIndex].Cells["id"].Value.ToString());
+                        int codigo = int.Parse(dvgData.Rows[rowIndex].Cells["id_produto"].Value.ToString());
                         string descricao = TxtNome.Text;
                         string x = TxtValor.Text;
+                        int codcategoria = int.Parse(dvgData.Rows[rowIndex].Cells["id"].Value.ToString());
                         if (x.Contains(","))
                         {
                             x = x.Replace(",", ".");
                         }
                         //decimal valor = decimal.Parse(x);
-                        sql = @"SELECT * FROM PROD_UPDATE(" + codigo + ",'" + descricao + "'," + x + ")";
-                        cmd = new NpgsqlCommand(sql, conn);
-                        result = (int)cmd.ExecuteScalar();
-                        conn.Close();
-                        if (result == 1)
+                        sql = @"SELECT * FROM PROD_UPDATE(" + codigo + ",'" + descricao + "'," + x + ","+ codcategoria +")";
+                        connection.connection();
+                        if ((connection.funcoes(sql)) == 1)
                         {
                             MessageBox.Show("Alterado com sucesso!");
                             TxtNome.Enabled = TxtValor.Enabled = false;
-                            this.produtoTableAdapter.Fill(this.comandasDataSet1.produto);
+                            this.v_produto_categoriaTableAdapter.Fill(this.comandasDataSet1.v_produto_categoria);
                         }
                         else
                         {
@@ -163,7 +159,7 @@ namespace SistemDeCaixa
                         MessageBox.Show("Falha ao alterar, Erro: " + ex.Message);
                         conn.Close();
                     }
-                    result = 0;
+                    
                 }
             }
         }
@@ -175,7 +171,7 @@ namespace SistemDeCaixa
 
         private void TxtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
         (e.KeyChar != '.'))
             {
                 e.Handled = true;

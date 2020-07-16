@@ -48,7 +48,9 @@ namespace SistemDeCaixa
             conn.Open();
             cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteScalar();
+
         }
+
         public decimal teste(string sql)
         {
             decimal result = 0;

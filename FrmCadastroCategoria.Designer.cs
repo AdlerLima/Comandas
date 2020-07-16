@@ -68,6 +68,7 @@
             this.BtnRemover.TabIndex = 3;
             this.BtnRemover.Text = "Remover";
             this.BtnRemover.UseVisualStyleBackColor = true;
+            this.BtnRemover.Click += new System.EventHandler(this.BtnRemover_Click);
             // 
             // FrmCadastroCategoria
             // 

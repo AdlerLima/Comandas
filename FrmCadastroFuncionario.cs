@@ -71,7 +71,8 @@ namespace SistemDeCaixa
                     try
                     {
                       //  conexao.connection();
-                        sql = @"SELECT * FROM FUNCIONARIO_INSERT('" + TxtNome.Text + "'," + CbxCargo.SelectedValue + ")";                        
+                        sql = @"SELECT * FROM FUNCIONARIO_INSERT('" + TxtNome.Text + "'," + CbxCargo.SelectedValue + ")";
+                        conexao.connection();
                         if(conexao.funcoes(sql) == 1)
                         {
                             MessageBox.Show("Adicionado com Sucesso");
@@ -96,6 +97,7 @@ namespace SistemDeCaixa
                         //var cargo = CbxCargo.SelectedValue;
                         sql = @"SELECT * FROM FUNCIONARIO_UPDATE(" + codigo + ",'"+TxtNome.Text+"',"+ CbxCargo.SelectedValue + ")";
                         //sql = @"UPDATE FUNCIONARIO SET NOME = '" + TxtNome.Text + "', ID_CARGO = " + CbxCargo.SelectedValue + " WHERE ID = " + codigo + "";
+                        conexao.connection();
                         if (conexao.funcoes(sql) == 1)
                         {
                             MessageBox.Show("Alterado com Sucesso!");

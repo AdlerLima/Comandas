@@ -58,5 +58,12 @@ namespace SistemDeCaixa
         {
             conexao.closeconnection();
         }
+
+        private void BtnRemover_Click(object sender, EventArgs e)
+        {
+            conexao.closeconnection();
+            sql = "DELETE FROM CATEGORIA WHERE DESCRICAO = '" + TxtDescricao.Text +"'";
+            conexao.selectCom(sql);
+        }
     }
 }

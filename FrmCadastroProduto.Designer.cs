@@ -41,26 +41,30 @@
             this.TxtValor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CbxCategoria = new System.Windows.Forms.ComboBox();
-            this.produtoidcategoriafkeyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.produtoidcategoriafkeyBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comandasDataSet = new SistemDeCaixa.comandasDataSet();
+            this.produtoidcategoriafkeyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddCategoria = new System.Windows.Forms.Button();
             this.categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.categoriaTableAdapter();
             this.produtoTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.produtoTableAdapter();
             this.dvgData = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodnomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodprecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idcategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.produtoidcategoriafkeyBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vprodutocategoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_produto_categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.v_produto_categoriaTableAdapter();
+            this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vprodutocategoriaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // produtoBindingSource
@@ -168,10 +172,10 @@
             this.CbxCategoria.TabIndex = 11;
             this.CbxCategoria.ValueMember = "id";
             // 
-            // produtoidcategoriafkeyBindingSource
+            // produtoidcategoriafkeyBindingSource1
             // 
-            this.produtoidcategoriafkeyBindingSource.DataMember = "produto_id_categoria_fkey";
-            this.produtoidcategoriafkeyBindingSource.DataSource = this.categoriaBindingSource;
+            this.produtoidcategoriafkeyBindingSource1.DataMember = "produto_id_categoria_fkey";
+            this.produtoidcategoriafkeyBindingSource1.DataSource = this.categoriaBindingSource;
             // 
             // categoriaBindingSource
             // 
@@ -182,6 +186,11 @@
             // 
             this.comandasDataSet.DataSetName = "comandasDataSet";
             this.comandasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // produtoidcategoriafkeyBindingSource
+            // 
+            this.produtoidcategoriafkeyBindingSource.DataMember = "produto_id_categoria_fkey";
+            this.produtoidcategoriafkeyBindingSource.DataSource = this.categoriaBindingSource;
             // 
             // btnAddCategoria
             // 
@@ -209,11 +218,12 @@
             this.dvgData.AutoGenerateColumns = false;
             this.dvgData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.prodnomeDataGridViewTextBoxColumn,
-            this.prodprecoDataGridViewTextBoxColumn,
-            this.idcategoriaDataGridViewTextBoxColumn});
-            this.dvgData.DataSource = this.produtoidcategoriafkeyBindingSource;
+            this.produto,
+            this.preco,
+            this.descricao,
+            this.id_produto,
+            this.id});
+            this.dvgData.DataSource = this.vprodutocategoriaBindingSource;
             this.dvgData.Location = new System.Drawing.Point(12, 172);
             this.dvgData.MultiSelect = false;
             this.dvgData.Name = "dvgData";
@@ -223,45 +233,57 @@
             this.dvgData.TabIndex = 0;
             this.dvgData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgData_CellClick);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // prodnomeDataGridViewTextBoxColumn
-            // 
-            this.prodnomeDataGridViewTextBoxColumn.DataPropertyName = "prod_nome";
-            this.prodnomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.prodnomeDataGridViewTextBoxColumn.Name = "prodnomeDataGridViewTextBoxColumn";
-            this.prodnomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prodprecoDataGridViewTextBoxColumn
-            // 
-            this.prodprecoDataGridViewTextBoxColumn.DataPropertyName = "prod_preco";
-            this.prodprecoDataGridViewTextBoxColumn.HeaderText = "Preço";
-            this.prodprecoDataGridViewTextBoxColumn.Name = "prodprecoDataGridViewTextBoxColumn";
-            this.prodprecoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idcategoriaDataGridViewTextBoxColumn
-            // 
-            this.idcategoriaDataGridViewTextBoxColumn.DataPropertyName = "descricao";
-            this.idcategoriaDataGridViewTextBoxColumn.HeaderText = "Categoria";
-            this.idcategoriaDataGridViewTextBoxColumn.Name = "idcategoriaDataGridViewTextBoxColumn";
-            this.idcategoriaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // produtoidcategoriafkeyBindingSource1
-            // 
-            this.produtoidcategoriafkeyBindingSource1.DataMember = "produto_id_categoria_fkey";
-            this.produtoidcategoriafkeyBindingSource1.DataSource = this.categoriaBindingSource;
-            // 
             // Column1
             // 
             this.Column1.DataPropertyName = "descricao";
             this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
+            // 
+            // vprodutocategoriaBindingSource
+            // 
+            this.vprodutocategoriaBindingSource.DataMember = "v_produto_categoria";
+            this.vprodutocategoriaBindingSource.DataSource = this.comandasDataSet1;
+            // 
+            // v_produto_categoriaTableAdapter
+            // 
+            this.v_produto_categoriaTableAdapter.ClearBeforeFill = true;
+            // 
+            // produto
+            // 
+            this.produto.DataPropertyName = "nome";
+            this.produto.HeaderText = "Produto";
+            this.produto.Name = "produto";
+            this.produto.ReadOnly = true;
+            // 
+            // preco
+            // 
+            this.preco.DataPropertyName = "preco";
+            this.preco.HeaderText = "Valor UN";
+            this.preco.Name = "preco";
+            this.preco.ReadOnly = true;
+            // 
+            // descricao
+            // 
+            this.descricao.DataPropertyName = "descricao";
+            this.descricao.HeaderText = "Categoria";
+            this.descricao.Name = "descricao";
+            this.descricao.ReadOnly = true;
+            // 
+            // id_produto
+            // 
+            this.id_produto.DataPropertyName = "id_produto";
+            this.id_produto.HeaderText = "Column2";
+            this.id_produto.Name = "id_produto";
+            this.id_produto.ReadOnly = true;
+            this.id_produto.Visible = false;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // FrmCadastroProduto
             // 
@@ -285,11 +307,12 @@
             this.Load += new System.EventHandler(this.FrmCadastroProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vprodutocategoriaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,9 +346,12 @@
         private System.Windows.Forms.BindingSource produtoidcategoriafkeyBindingSource;
         private System.Windows.Forms.BindingSource produtoidcategoriafkeyBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prodnomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prodprecoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcategoriaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource vprodutocategoriaBindingSource;
+        private comandasDataSetTableAdapters.v_produto_categoriaTableAdapter v_produto_categoriaTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preco;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_produto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
     }
 }

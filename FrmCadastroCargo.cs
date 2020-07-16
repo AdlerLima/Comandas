@@ -42,8 +42,17 @@ namespace SistemDeCaixa
         {
             //cmd.Parameters.AddWithValue("_id", int.Parse(dvgData.Rows[rowIndex].Cells["idDataGridViewTextBoxColumn"].Value.ToString()));
             var id = CbxCargo.SelectedValue;
+            conexao.connection();
             sql = "SELECT * FROM CARGO_DELETE(" + id + ")";
-            conexao.funcoes(sql);
+            if(conexao.funcoes(sql) == 1)
+            {
+                MessageBox.Show("Cargo Removido com sucesso!");
+                this.cargoTableAdapter.Fill(this.comandasDataSet.cargo);
+            }
+            else
+            {
+                MessageBox.Show("Você não pode deletar um cargo que esta vinculado a um funcionario. Entre em contato com o suporte para maiores detalhes.");
+            }
         }
 
         private void FrmCadastroCargo_Load(object sender, EventArgs e)
