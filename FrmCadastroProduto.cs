@@ -186,7 +186,9 @@ namespace SistemDeCaixa
         private void btnAddCategoria_Click(object sender, EventArgs e)
         {
             FrmCadastroCategoria Novacategoria = new FrmCadastroCategoria();
-            Novacategoria.Show();
+            Novacategoria.ShowDialog();
+            this.categoriaTableAdapter.Fill(this.comandasDataSet.categoria);
+
         }
     }
 }

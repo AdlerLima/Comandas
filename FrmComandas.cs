@@ -86,5 +86,11 @@ namespace SistemDeCaixa
             ta.SelectComanda(this.comandasDataSet.v_comandas, CbxComandas.SelectedValue);
             valorTotal();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmRelatorioVendas relatorio = new FrmRelatorioVendas();
+            relatorio.Show();
+        }
     }
 }

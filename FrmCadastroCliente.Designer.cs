@@ -86,7 +86,6 @@
             // 
             // CbxCidade
             // 
-            this.CbxCidade.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cidadeBindingSource, "id", true));
             this.CbxCidade.DataSource = this.cidadeBindingSource;
             this.CbxCidade.DisplayMember = "nome";
             this.CbxCidade.FormattingEnabled = true;
@@ -400,6 +399,7 @@
             this.TxtCidade.Name = "TxtCidade";
             this.TxtCidade.Size = new System.Drawing.Size(39, 20);
             this.TxtCidade.TabIndex = 21;
+            this.TxtCidade.Visible = false;
             // 
             // FrmCadastroCliente
             // 

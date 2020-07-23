@@ -99,7 +99,7 @@ namespace SistemDeCaixa
                    // var id = CbxCidade.SelectedValue;
                     cpf = cpf.Replace(",", ".");
                     sql = "SELECT * FROM CLIENTE_UPDATE(" + codigo
-                                + ",'" + TxtNome.Text + "'," + TxtCidade.Text
+                                + ",'" + TxtNome.Text + "'," + CbxCidade.SelectedValue
                                 + ",'" + cpf + "','" + mskDataNascimento.Text
                                 + "','" + TxtRua.Text + "',"
                                 + TxtNumero.Text + ",'" + TxtBairro.Text + "')";

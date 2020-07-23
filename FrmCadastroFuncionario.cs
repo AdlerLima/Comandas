@@ -35,7 +35,9 @@ namespace SistemDeCaixa
         private void BtnNovo_Click(object sender, EventArgs e)
         {
             FrmCadastroCargo cargo = new FrmCadastroCargo();
-            cargo.Show();
+            cargo.ShowDialog();
+            this.cargoTableAdapter.Fill(this.comandasDataSet.cargo);
+            this.fun_cargoTableAdapter.Fill(this.comandasDataSet.fun_cargo);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
