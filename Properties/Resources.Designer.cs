@@ -123,6 +123,26 @@ namespace SistemDeCaixa.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo123 {
+            get {
+                object obj = ResourceManager.GetObject("logo123", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Perfl2 {
+            get {
+                object obj = ResourceManager.GetObject("Perfl2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap purchaseorderapplication_compra_orde_4474 {
             get {
                 object obj = ResourceManager.GetObject("purchaseorderapplication_compra_orde_4474", resourceCulture);

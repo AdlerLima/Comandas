@@ -32,15 +32,15 @@ namespace SistemDeCaixa
             this.clienteTableAdapter.Fill(this.comandasDataSet.cliente);
             // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.venda'. Você pode movê-la ou removê-la conforme necessário.
             this.vendaTableAdapter.Fill(this.comandasDataSet.venda);
-            CbxComanda.DataSource = carregaComandas();
-            CbxComanda.DisplayMember = "Nome";
+            //CbxComanda.DataSource = carregaComandas();
+            //CbxComanda.DisplayMember = "Nome";
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             comandasDataSet.relatorio_vendasDataTable dtRelatorio = new comandasDataSet.relatorio_vendasDataTable();
-            DgvRelatorio.DataSource =  this.relatorio_vendasTableAdapter.FiltroRelatorio(dtRelatorio, CbxComanda.SelectedValue);
+           // DgvRelatorio.DataSource =  this.relatorio_vendasTableAdapter.FiltroRelatorio(dtRelatorio, CbxComanda.SelectedValue);
         }
         public ArrayList carregaComandas()
         {
@@ -54,10 +54,3 @@ namespace SistemDeCaixa
         }
     }
 }
-/*
- OR
-                         :COMANDA = 0) AND (id_cliente = :CLIENTE OR
-                         :CLIENTE = 0) AND (id_funcionario = :FUNCIONARIO OR
-                         :FUNCIONARIO = 0) AND (id_pagamento = :PAGAMENTO OR
-                         :PAGAMENTO = 0)
-     */

@@ -94,11 +94,9 @@ namespace SistemDeCaixa {
         
         private global::System.Data.DataRelation relationcomanda_id_produto_fkey;
         
-        private global::System.Data.DataRelation relationproduto_id_categoria_fkey;
-        
         private global::System.Data.DataRelation relationcomanda_id_produto_fkey1;
         
-        private global::System.Data.DataRelation relationproduto_id_categoria_fkey1;
+        private global::System.Data.DataRelation relationproduto_id_categoria_fkey;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -890,9 +888,8 @@ namespace SistemDeCaixa {
             this.relationvenda_id_funcionario_fkey = this.Relations["venda_id_funcionario_fkey"];
             this.relationvenda_id_pagamento_fkey = this.Relations["venda_id_pagamento_fkey"];
             this.relationcomanda_id_produto_fkey = this.Relations["comanda_id_produto_fkey"];
-            this.relationproduto_id_categoria_fkey = this.Relations["produto_id_categoria_fkey"];
             this.relationcomanda_id_produto_fkey1 = this.Relations["comanda_id_produto_fkey1"];
-            this.relationproduto_id_categoria_fkey1 = this.Relations["produto_id_categoria_fkey1"];
+            this.relationproduto_id_categoria_fkey = this.Relations["produto_id_categoria_fkey"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -985,18 +982,14 @@ namespace SistemDeCaixa {
                         this.tableproduto.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablecomanda.id_produtoColumn}, false);
             this.Relations.Add(this.relationcomanda_id_produto_fkey);
-            this.relationproduto_id_categoria_fkey = new global::System.Data.DataRelation("produto_id_categoria_fkey", new global::System.Data.DataColumn[] {
-                        this.tablecategoria.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableproduto.id_categoriaColumn}, false);
-            this.Relations.Add(this.relationproduto_id_categoria_fkey);
             this.relationcomanda_id_produto_fkey1 = new global::System.Data.DataRelation("comanda_id_produto_fkey1", new global::System.Data.DataColumn[] {
                         this.tableproduto1.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablecomanda.id_produtoColumn}, false);
             this.Relations.Add(this.relationcomanda_id_produto_fkey1);
-            this.relationproduto_id_categoria_fkey1 = new global::System.Data.DataRelation("produto_id_categoria_fkey1", new global::System.Data.DataColumn[] {
+            this.relationproduto_id_categoria_fkey = new global::System.Data.DataRelation("produto_id_categoria_fkey", new global::System.Data.DataColumn[] {
                         this.tablecategoria.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableproduto1.id_categoriaColumn}, false);
-            this.Relations.Add(this.relationproduto_id_categoria_fkey1);
+                        this.tableproduto.categoriaidColumn}, false);
+            this.Relations.Add(this.relationproduto_id_categoria_fkey);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3419,9 +3412,7 @@ namespace SistemDeCaixa {
             
             private global::System.Data.DataColumn columnprod_preco;
             
-            private global::System.Data.DataColumn columnid_categoria;
-            
-            private global::System.Data.DataColumn columndescricao;
+            private global::System.Data.DataColumn columncategoriaid;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -3482,17 +3473,9 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_categoriaColumn {
+            public global::System.Data.DataColumn categoriaidColumn {
                 get {
-                    return this.columnid_categoria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn descricaoColumn {
-                get {
-                    return this.columndescricao;
+                    return this.columncategoriaid;
                 }
             }
             
@@ -3533,14 +3516,13 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public produtoRow AddprodutoRow(int id, string prod_nome, decimal prod_preco, categoriaRow parentcategoriaRowByproduto_id_categoria_fkey, string descricao) {
+            public produtoRow AddprodutoRow(int id, string prod_nome, decimal prod_preco, categoriaRow parentcategoriaRowByproduto_id_categoria_fkey) {
                 produtoRow rowprodutoRow = ((produtoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
                         prod_nome,
                         prod_preco,
-                        null,
-                        descricao};
+                        null};
                 if ((parentcategoriaRowByproduto_id_categoria_fkey != null)) {
                     columnValuesArray[3] = parentcategoriaRowByproduto_id_categoria_fkey[0];
                 }
@@ -3576,8 +3558,7 @@ namespace SistemDeCaixa {
                 this.columnid = base.Columns["id"];
                 this.columnprod_nome = base.Columns["prod_nome"];
                 this.columnprod_preco = base.Columns["prod_preco"];
-                this.columnid_categoria = base.Columns["id_categoria"];
-                this.columndescricao = base.Columns["descricao"];
+                this.columncategoriaid = base.Columns["categoriaid"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3589,18 +3570,17 @@ namespace SistemDeCaixa {
                 base.Columns.Add(this.columnprod_nome);
                 this.columnprod_preco = new global::System.Data.DataColumn("prod_preco", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprod_preco);
-                this.columnid_categoria = new global::System.Data.DataColumn("id_categoria", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_categoria);
-                this.columndescricao = new global::System.Data.DataColumn("descricao", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndescricao);
+                this.columncategoriaid = new global::System.Data.DataColumn("categoriaid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncategoriaid);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
                 this.columnid.ReadOnly = true;
                 this.columnid.Unique = true;
+                this.columnprod_nome.AllowDBNull = false;
                 this.columnprod_nome.MaxLength = 100;
-                this.columndescricao.ReadOnly = true;
-                this.columndescricao.MaxLength = 100;
+                this.columnprod_preco.AllowDBNull = false;
+                this.columncategoriaid.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8528,8 +8508,6 @@ namespace SistemDeCaixa {
             
             private global::System.Data.DataColumn columnprod_preco;
             
-            private global::System.Data.DataColumn columnid_categoria;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public produto1DataTable() {
@@ -8589,14 +8567,6 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_categoriaColumn {
-                get {
-                    return this.columnid_categoria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -8632,16 +8602,12 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public produto1Row Addproduto1Row(int id, string prod_nome, decimal prod_preco, categoriaRow parentcategoriaRowByproduto_id_categoria_fkey1) {
+            public produto1Row Addproduto1Row(int id, string prod_nome, decimal prod_preco) {
                 produto1Row rowproduto1Row = ((produto1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
                         prod_nome,
-                        prod_preco,
-                        null};
-                if ((parentcategoriaRowByproduto_id_categoria_fkey1 != null)) {
-                    columnValuesArray[3] = parentcategoriaRowByproduto_id_categoria_fkey1[0];
-                }
+                        prod_preco};
                 rowproduto1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowproduto1Row);
                 return rowproduto1Row;
@@ -8674,7 +8640,6 @@ namespace SistemDeCaixa {
                 this.columnid = base.Columns["id"];
                 this.columnprod_nome = base.Columns["prod_nome"];
                 this.columnprod_preco = base.Columns["prod_preco"];
-                this.columnid_categoria = base.Columns["id_categoria"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8686,8 +8651,6 @@ namespace SistemDeCaixa {
                 base.Columns.Add(this.columnprod_nome);
                 this.columnprod_preco = new global::System.Data.DataColumn("prod_preco", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprod_preco);
-                this.columnid_categoria = new global::System.Data.DataColumn("id_categoria", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_categoria);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -8695,7 +8658,6 @@ namespace SistemDeCaixa {
                 this.columnprod_nome.AllowDBNull = false;
                 this.columnprod_nome.MaxLength = 100;
                 this.columnprod_preco.AllowDBNull = false;
-                this.columnid_categoria.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8835,11 +8797,11 @@ namespace SistemDeCaixa {
             
             private global::System.Data.DataColumn columnpreco;
             
-            private global::System.Data.DataColumn columnid_categoria;
-            
             private global::System.Data.DataColumn columnid;
             
             private global::System.Data.DataColumn columndescricao;
+            
+            private global::System.Data.DataColumn columncategoriaid;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -8900,14 +8862,6 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_categoriaColumn {
-                get {
-                    return this.columnid_categoria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn idColumn {
                 get {
                     return this.columnid;
@@ -8919,6 +8873,14 @@ namespace SistemDeCaixa {
             public global::System.Data.DataColumn descricaoColumn {
                 get {
                     return this.columndescricao;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn categoriaidColumn {
+                get {
+                    return this.columncategoriaid;
                 }
             }
             
@@ -8959,15 +8921,15 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_produto_categoriaRow Addv_produto_categoriaRow(int id_produto, string nome, decimal preco, int id_categoria, int id, string descricao) {
+            public v_produto_categoriaRow Addv_produto_categoriaRow(int id_produto, string nome, decimal preco, int id, string descricao, int categoriaid) {
                 v_produto_categoriaRow rowv_produto_categoriaRow = ((v_produto_categoriaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id_produto,
                         nome,
                         preco,
-                        id_categoria,
                         id,
-                        descricao};
+                        descricao,
+                        categoriaid};
                 rowv_produto_categoriaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowv_produto_categoriaRow);
                 return rowv_produto_categoriaRow;
@@ -8993,9 +8955,9 @@ namespace SistemDeCaixa {
                 this.columnid_produto = base.Columns["id_produto"];
                 this.columnnome = base.Columns["nome"];
                 this.columnpreco = base.Columns["preco"];
-                this.columnid_categoria = base.Columns["id_categoria"];
                 this.columnid = base.Columns["id"];
                 this.columndescricao = base.Columns["descricao"];
+                this.columncategoriaid = base.Columns["categoriaid"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9007,12 +8969,12 @@ namespace SistemDeCaixa {
                 base.Columns.Add(this.columnnome);
                 this.columnpreco = new global::System.Data.DataColumn("preco", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpreco);
-                this.columnid_categoria = new global::System.Data.DataColumn("id_categoria", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_categoria);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
                 this.columndescricao = new global::System.Data.DataColumn("descricao", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescricao);
+                this.columncategoriaid = new global::System.Data.DataColumn("categoriaid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncategoriaid);
                 this.columnnome.MaxLength = 100;
                 this.columndescricao.MaxLength = 100;
             }
@@ -9611,17 +9573,6 @@ namespace SistemDeCaixa {
                     return ((produtoRow[])(base.GetChildRows(this.Table.ChildRelations["produto_id_categoria_fkey"])));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public produto1Row[] Getproduto1Rows() {
-                if ((this.Table.ChildRelations["produto_id_categoria_fkey1"] == null)) {
-                    return new produto1Row[0];
-                }
-                else {
-                    return ((produto1Row[])(base.GetChildRows(this.Table.ChildRelations["produto_id_categoria_fkey1"])));
-                }
-            }
         }
         
         /// <summary>
@@ -10132,12 +10083,7 @@ namespace SistemDeCaixa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string prod_nome {
                 get {
-                    try {
-                        return ((string)(this[this.tableproduto.prod_nomeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'prod_nome\' na tabela \'produto\' é DBNull.", e);
-                    }
+                    return ((string)(this[this.tableproduto.prod_nomeColumn]));
                 }
                 set {
                     this[this.tableproduto.prod_nomeColumn] = value;
@@ -10148,12 +10094,7 @@ namespace SistemDeCaixa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public decimal prod_preco {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableproduto.prod_precoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'prod_preco\' na tabela \'produto\' é DBNull.", e);
-                    }
+                    return ((decimal)(this[this.tableproduto.prod_precoColumn]));
                 }
                 set {
                     this[this.tableproduto.prod_precoColumn] = value;
@@ -10162,33 +10103,12 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_categoria {
+            public int categoriaid {
                 get {
-                    try {
-                        return ((int)(this[this.tableproduto.id_categoriaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'id_categoria\' na tabela \'produto\' é DBNull.", e);
-                    }
+                    return ((int)(this[this.tableproduto.categoriaidColumn]));
                 }
                 set {
-                    this[this.tableproduto.id_categoriaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string descricao {
-                get {
-                    try {
-                        return ((string)(this[this.tableproduto.descricaoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'descricao\' na tabela \'produto\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableproduto.descricaoColumn] = value;
+                    this[this.tableproduto.categoriaidColumn] = value;
                 }
             }
             
@@ -10201,54 +10121,6 @@ namespace SistemDeCaixa {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["produto_id_categoria_fkey"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isprod_nomeNull() {
-                return this.IsNull(this.tableproduto.prod_nomeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setprod_nomeNull() {
-                this[this.tableproduto.prod_nomeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isprod_precoNull() {
-                return this.IsNull(this.tableproduto.prod_precoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setprod_precoNull() {
-                this[this.tableproduto.prod_precoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isid_categoriaNull() {
-                return this.IsNull(this.tableproduto.id_categoriaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setid_categoriaNull() {
-                this[this.tableproduto.id_categoriaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsdescricaoNull() {
-                return this.IsNull(this.tableproduto.descricaoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetdescricaoNull() {
-                this[this.tableproduto.descricaoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11622,28 +11494,6 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_categoria {
-                get {
-                    return ((int)(this[this.tableproduto1.id_categoriaColumn]));
-                }
-                set {
-                    this[this.tableproduto1.id_categoriaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public categoriaRow categoriaRow {
-                get {
-                    return ((categoriaRow)(this.GetParentRow(this.Table.ParentRelations["produto_id_categoria_fkey1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["produto_id_categoria_fkey1"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public comandaRow[] GetcomandaRows() {
                 if ((this.Table.ChildRelations["comanda_id_produto_fkey1"] == null)) {
                     return new comandaRow[0];
@@ -11718,22 +11568,6 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_categoria {
-                get {
-                    try {
-                        return ((int)(this[this.tablev_produto_categoria.id_categoriaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'id_categoria\' na tabela \'v_produto_categoria\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablev_produto_categoria.id_categoriaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int id {
                 get {
                     try {
@@ -11761,6 +11595,22 @@ namespace SistemDeCaixa {
                 }
                 set {
                     this[this.tablev_produto_categoria.descricaoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int categoriaid {
+                get {
+                    try {
+                        return ((int)(this[this.tablev_produto_categoria.categoriaidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'categoriaid\' na tabela \'v_produto_categoria\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablev_produto_categoria.categoriaidColumn] = value;
                 }
             }
             
@@ -11802,18 +11652,6 @@ namespace SistemDeCaixa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isid_categoriaNull() {
-                return this.IsNull(this.tablev_produto_categoria.id_categoriaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setid_categoriaNull() {
-                this[this.tablev_produto_categoria.id_categoriaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsidNull() {
                 return this.IsNull(this.tablev_produto_categoria.idColumn);
             }
@@ -11834,6 +11672,18 @@ namespace SistemDeCaixa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetdescricaoNull() {
                 this[this.tablev_produto_categoria.descricaoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IscategoriaidNull() {
+                return this.IsNull(this.tablev_produto_categoria.categoriaidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetcategoriaidNull() {
+                this[this.tablev_produto_categoria.categoriaidColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16448,8 +16298,7 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("prod_nome", "prod_nome");
             tableMapping.ColumnMappings.Add("prod_preco", "prod_preco");
-            tableMapping.ColumnMappings.Add("id_categoria", "id_categoria");
-            tableMapping.ColumnMappings.Add("descricao", "descricao");
+            tableMapping.ColumnMappings.Add("categoriaid", "categoriaid");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -16466,9 +16315,7 @@ namespace SistemDeCaixa.comandasDataSetTableAdapters {
             this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[2];
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        produto.id, produto.prod_nome, produto.prod_preco, produto.id_categ" +
-                "oria, categoria.descricao\r\nFROM            produto LEFT OUTER JOIN\r\n            " +
-                "             categoria ON produto.id_categoria = categoria.id";
+            this._commandCollection[0].CommandText = "SELECT       *\r\nFROM            produto ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -20630,13 +20477,11 @@ GROUP BY C.numero_comanda";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("prod_nome", "prod_nome");
             tableMapping.ColumnMappings.Add("prod_preco", "prod_preco");
-            tableMapping.ColumnMappings.Add("id_categoria", "id_categoria");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM \"public\".\"produto\" WHERE ((\"id\" = :Original_id) AND (\"prod_nome\" = :O" +
-                "riginal_prod_nome) AND (\"prod_preco\" = :Original_prod_preco) AND (\"id_categoria\"" +
-                " = :Original_id_categoria))";
+                "riginal_prod_nome) AND (\"prod_preco\" = :Original_prod_preco))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.PostgreSql.PgSqlParameter param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "Original_id";
@@ -20661,18 +20506,10 @@ GROUP BY C.numero_comanda";
             param.SourceColumn = "prod_preco";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
-            param.ParameterName = "Original_id_categoria";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "id_categoria";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"public\".\"produto\" (\"id\", \"prod_nome\", \"prod_preco\", \"id_categoria\") " +
-                "VALUES (:id, :prod_nome, :prod_preco, :id_categoria)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"public\".\"produto\" (\"id\", \"prod_nome\", \"prod_preco\", \"categoriaid\") V" +
+                "ALUES (:id, :prod_nome, :prod_preco, :categoriaid)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "id";
@@ -20695,15 +20532,17 @@ GROUP BY C.numero_comanda";
             param.SourceColumn = "prod_preco";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
-            param.ParameterName = "id_categoria";
+            param.ParameterName = "categoriaid";
             param.DbType = global::System.Data.DbType.Int32;
             param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
             param.IsNullable = true;
-            param.SourceColumn = "id_categoria";
+            param.SourceColumn = "categoriaid";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""public"".""produto"" SET ""id"" = :id, ""prod_nome"" = :prod_nome, ""prod_preco"" = :prod_preco, ""id_categoria"" = :id_categoria WHERE ((""id"" = :Original_id) AND (""prod_nome"" = :Original_prod_nome) AND (""prod_preco"" = :Original_prod_preco) AND (""id_categoria"" = :Original_id_categoria))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"public\".\"produto\" SET \"id\" = :id, \"prod_nome\" = :prod_nome, \"prod_preco\" " +
+                "= :prod_preco WHERE ((\"id\" = :Original_id) AND (\"prod_nome\" = :Original_prod_nom" +
+                "e) AND (\"prod_preco\" = :Original_prod_preco))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "id";
@@ -20724,13 +20563,6 @@ GROUP BY C.numero_comanda";
             param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Numeric;
             param.IsNullable = true;
             param.SourceColumn = "prod_preco";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
-            param.ParameterName = "id_categoria";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "id_categoria";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "Original_id";
@@ -20755,14 +20587,6 @@ GROUP BY C.numero_comanda";
             param.SourceColumn = "prod_preco";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
-            param.ParameterName = "Original_id_categoria";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "id_categoria";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20778,7 +20602,7 @@ GROUP BY C.numero_comanda";
             this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[1];
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, prod_nome, prod_preco, id_categoria FROM \"public\".produto";
+            this._commandCollection[0].CommandText = "SELECT id, prod_nome, prod_preco FROM produto";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -20839,7 +20663,7 @@ GROUP BY C.numero_comanda";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_prod_nome, decimal Original_prod_preco, int Original_id_categoria) {
+        public virtual int Delete(int Original_id, string Original_prod_nome, decimal Original_prod_preco) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_prod_nome == null)) {
                 throw new global::System.ArgumentNullException("Original_prod_nome");
@@ -20848,7 +20672,6 @@ GROUP BY C.numero_comanda";
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_prod_nome));
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_prod_preco));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_id_categoria));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20869,7 +20692,7 @@ GROUP BY C.numero_comanda";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int id, string prod_nome, decimal prod_preco, int id_categoria) {
+        public virtual int Insert(int id, string prod_nome, decimal prod_preco, int categoriaid) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id));
             if ((prod_nome == null)) {
                 throw new global::System.ArgumentNullException("prod_nome");
@@ -20878,7 +20701,7 @@ GROUP BY C.numero_comanda";
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(prod_nome));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(prod_preco));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(id_categoria));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(categoriaid));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20899,7 +20722,7 @@ GROUP BY C.numero_comanda";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int id, string prod_nome, decimal prod_preco, int id_categoria, int Original_id, string Original_prod_nome, decimal Original_prod_preco, int Original_id_categoria) {
+        public virtual int Update(int id, string prod_nome, decimal prod_preco, int Original_id, string Original_prod_nome, decimal Original_prod_preco) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(id));
             if ((prod_nome == null)) {
                 throw new global::System.ArgumentNullException("prod_nome");
@@ -20908,16 +20731,14 @@ GROUP BY C.numero_comanda";
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(prod_nome));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(prod_preco));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(id_categoria));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_id));
             if ((Original_prod_nome == null)) {
                 throw new global::System.ArgumentNullException("Original_prod_nome");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_prod_nome));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_prod_nome));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Original_prod_preco));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id_categoria));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Original_prod_preco));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20938,8 +20759,8 @@ GROUP BY C.numero_comanda";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string prod_nome, decimal prod_preco, int id_categoria, int Original_id, string Original_prod_nome, decimal Original_prod_preco, int Original_id_categoria) {
-            return this.Update(Original_id, prod_nome, prod_preco, id_categoria, Original_id, Original_prod_nome, Original_prod_preco, Original_id_categoria);
+        public virtual int Update(string prod_nome, decimal prod_preco, int Original_id, string Original_prod_nome, decimal Original_prod_preco) {
+            return this.Update(Original_id, prod_nome, prod_preco, Original_id, Original_prod_nome, Original_prod_preco);
         }
     }
     
@@ -21067,9 +20888,9 @@ GROUP BY C.numero_comanda";
             tableMapping.ColumnMappings.Add("id_produto", "id_produto");
             tableMapping.ColumnMappings.Add("nome", "nome");
             tableMapping.ColumnMappings.Add("preco", "preco");
-            tableMapping.ColumnMappings.Add("id_categoria", "id_categoria");
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("descricao", "descricao");
+            tableMapping.ColumnMappings.Add("categoriaid", "categoriaid");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -21086,8 +20907,8 @@ GROUP BY C.numero_comanda";
             this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[1];
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id_produto, nome, preco, id_categoria, id, descricao FROM \"public\".v_produ" +
-                "to_categoria";
+            this._commandCollection[0].CommandText = "SELECT id_produto, nome, preco, id, descricao, categoriaid FROM v_produto_categor" +
+                "ia";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -21260,25 +21081,13 @@ GROUP BY C.numero_comanda";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[2];
+            this._commandCollection = new global::Devart.Data.PostgreSql.PgSqlCommand[1];
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, valor_total, numero_comanda, id_cliente, id_comanda, id_pagamento, pag" +
-                "amento, cliente, funcionario, id_funcionario FROM relatorio_vendas";
+            this._commandCollection[0].CommandText = @"SELECT id, valor_total, numero_comanda, id_cliente, id_comanda, id_pagamento, pagamento, cliente, funcionario, id_funcionario FROM relatorio_vendas
+group by
+id, valor_total, numero_comanda, id_cliente, id_comanda, id_pagamento, pagamento, cliente, funcionario, id_funcionario";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::Devart.Data.PostgreSql.PgSqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        id, valor_total, numero_comanda, id_cliente, id_comanda, id_pagamen" +
-                "to, pagamento, cliente, funcionario, id_funcionario\r\nFROM            relatorio_v" +
-                "endas\r\nWHERE        (numero_comanda = :COMANDA)";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            global::Devart.Data.PostgreSql.PgSqlParameter param = new global::Devart.Data.PostgreSql.PgSqlParameter();
-            param.ParameterName = "COMANDA";
-            param.DbType = global::System.Data.DbType.Object;
-            param.Size = 2147483647;
-            param.IsNullable = true;
-            param.SourceColumn = "numero_comanda";
-            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21303,25 +21112,6 @@ GROUP BY C.numero_comanda";
             comandasDataSet.relatorio_vendasDataTable dataTable = new comandasDataSet.relatorio_vendasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FiltroRelatorio(comandasDataSet.relatorio_vendasDataTable dataTable, object COMANDA) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((COMANDA == null)) {
-                throw new global::System.ArgumentNullException("COMANDA");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((object)(COMANDA));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
         }
     }
     

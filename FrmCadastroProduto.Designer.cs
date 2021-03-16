@@ -49,14 +49,14 @@
             this.categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.categoriaTableAdapter();
             this.produtoTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.produtoTableAdapter();
             this.dvgData = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vprodutocategoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.v_produto_categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.v_produto_categoriaTableAdapter();
             this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vprodutocategoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.v_produto_categoriaTableAdapter = new SistemDeCaixa.comandasDataSetTableAdapters.v_produto_categoriaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comandasDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoidcategoriafkeyBindingSource1)).BeginInit();
@@ -162,7 +162,6 @@
             // 
             // CbxCategoria
             // 
-            this.CbxCategoria.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.produtoidcategoriafkeyBindingSource1, "id_categoria", true));
             this.CbxCategoria.DataSource = this.categoriaBindingSource;
             this.CbxCategoria.DisplayMember = "descricao";
             this.CbxCategoria.FormattingEnabled = true;
@@ -233,21 +232,6 @@
             this.dvgData.TabIndex = 0;
             this.dvgData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgData_CellClick);
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "descricao";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // vprodutocategoriaBindingSource
-            // 
-            this.vprodutocategoriaBindingSource.DataMember = "v_produto_categoria";
-            this.vprodutocategoriaBindingSource.DataSource = this.comandasDataSet1;
-            // 
-            // v_produto_categoriaTableAdapter
-            // 
-            this.v_produto_categoriaTableAdapter.ClearBeforeFill = true;
-            // 
             // produto
             // 
             this.produto.DataPropertyName = "nome";
@@ -284,6 +268,21 @@
             this.id.Name = "id";
             this.id.ReadOnly = true;
             this.id.Visible = false;
+            // 
+            // vprodutocategoriaBindingSource
+            // 
+            this.vprodutocategoriaBindingSource.DataMember = "v_produto_categoria";
+            this.vprodutocategoriaBindingSource.DataSource = this.comandasDataSet1;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "descricao";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // v_produto_categoriaTableAdapter
+            // 
+            this.v_produto_categoriaTableAdapter.ClearBeforeFill = true;
             // 
             // FrmCadastroProduto
             // 

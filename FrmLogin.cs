@@ -24,9 +24,10 @@ namespace SistemDeCaixa
             {
                 if (TxtSenha.Text == "admin")
                 {
+                    this.Hide();
                     FrmMenu menu = new FrmMenu();
-                    menu.Show();
-                    
+                    menu.Show();                   
+
                 }
                 else
                 {
@@ -48,11 +49,7 @@ namespace SistemDeCaixa
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmLogin login = new FrmLogin();
-            login.Dispose();
-            login.Close();
-            login.Hide();
-            login.Visible = false;
+            FrmLogin login = new FrmLogin();                 
         }
     }
 }

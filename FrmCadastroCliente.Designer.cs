@@ -215,6 +215,7 @@
             this.BTAdicionar.TabIndex = 14;
             this.BTAdicionar.Text = "Adicionar";
             this.BTAdicionar.UseVisualStyleBackColor = true;
+            this.BTAdicionar.Click += new System.EventHandler(this.BTAdicionar_Click);
             // 
             // BTAlterar
             // 

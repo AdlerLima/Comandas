@@ -44,6 +44,7 @@ namespace SistemDeCaixa
             this.cli_cidTableAdapter.Fill(this.comandasDataSet.cli_cid);
             // TODO: esta linha de código carrega dados na tabela 'comandasDataSet.cliente'. Você pode movê-la ou removê-la conforme necessário.
             this.clienteTableAdapter.Fill(this.comandasDataSet.cliente);
+            TxtNome.Enabled = TxtBairro.Enabled = TxtCidade.Enabled = TxtNumero.Enabled = TxtRua.Enabled = mskDataNascimento.Enabled = MskCPF.Enabled = CbxCidade.Enabled = false;
 
         }
 
@@ -85,7 +86,7 @@ namespace SistemDeCaixa
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Erro: " + ex);
+                        MessageBox.Show("CPF Ja cadastrado no Sistema!");
                     }
                 }
             }
@@ -155,6 +156,14 @@ namespace SistemDeCaixa
             {
                 MessageBox.Show("Erro: " + ex.Message);
             }
+        }
+
+        private void BTAdicionar_Click(object sender, EventArgs e)
+        {
+            rowIndex = -1;
+            TxtNome.Enabled = TxtBairro.Enabled = TxtCidade.Enabled = TxtNumero.Enabled = TxtRua.Enabled = mskDataNascimento.Enabled = MskCPF.Enabled = CbxCidade.Enabled = true;
+            TxtNome.Text = TxtBairro.Text = TxtCidade.Text = TxtNumero.Text = TxtRua.Text =mskDataNascimento.Text = MskCPF.Text ="";
+            CbxCidade.SelectedIndex = 0;
         }
     }
 }

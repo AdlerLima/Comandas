@@ -67,6 +67,7 @@ namespace SistemDeCaixa
                     rowIndex = -1;
                     conn.Close();
                     this.v_produto_categoriaTableAdapter.Fill(this.comandasDataSet1.v_produto_categoria);
+                    CbxCategoria.Text = "";
                     
                 }
                 conn.Close();
